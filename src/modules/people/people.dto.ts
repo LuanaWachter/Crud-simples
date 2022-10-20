@@ -1,4 +1,4 @@
-import { IsEmail, IsString, MinLength } from 'class-validator'
+import { IsDate, IsDateString, IsEmail, IsOptional, IsString, IsUppercase, MinLength } from 'class-validator'
 
 
 export class PeopleDTO {
@@ -6,11 +6,14 @@ export class PeopleDTO {
 
     @IsString()
     @MinLength(3)
+    @IsUppercase()
     name: string;
 
     @IsEmail()
     email: string;
     
+    @IsOptional()
+    @IsDateString({}, {message: "insert valid data"})
     dateOfBirth: Date;
 }
 
