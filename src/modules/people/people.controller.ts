@@ -26,4 +26,10 @@ export class PeopleController {
   async delete(@Param("id")id: string){
     return this.peopleService.delete(id);
   }
+
+  @Get(":name")
+  async findByName(@Param("name")name: string){
+    return this.peopleService.findByName(name)
+  }
+
 }

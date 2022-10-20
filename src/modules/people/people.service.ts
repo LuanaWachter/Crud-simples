@@ -25,11 +25,19 @@ export class PeopleService {
         return person;
     }
 
-    async findAll(){   //vai retornar todos os dados que estao no meu banco de dados
+    async findAll() {   //vai retornar todos os dados que estao no meu banco de dados
         return this.prisma.person.findMany();
     }
 
-    async update(id: string, data:PeopleDTO){ 
+    async findByName(name: string) {
+        return this.prisma.person.findFirst({
+            where:{
+                name,
+            }
+        })
+    }
+
+    async update(id: string, data: PeopleDTO){ 
         const personExists = await this.prisma.person.findUnique({  //encontra registro existente por id
             where:{
                 id,
