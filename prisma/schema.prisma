@@ -1,0 +1,20 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Person {
+  id  String @id @default(uuid())
+  name String //perguntar como fazer isso em caixa alta obrigatório
+  email String @unique //perguntar como fazer isso ser test@test.com obrigatorio
+  dateOfBirth DateTime?
+
+  @@map("people")
+}
